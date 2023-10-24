@@ -1,4 +1,3 @@
-import re
 import unicodedata
 
 # Tất cả nguyên âm
@@ -15,21 +14,6 @@ unlink_SC_consonant_list = ['c', 'g', 'ng']
 # Tất cả các thanh dấu
 all_accent = [chr(769), chr(768), chr(777), chr(771), chr(803)]
 SA_accent = [chr(769), chr(803)]
-
-# patterns = {
-#     '[áàảãạ]': 'a',
-#     '[ắằẳẵặ]': 'ă',
-#     '[ấầẩẫậ]': 'ă',
-#     '[éèẻẽẹ]': 'e',
-#     '[ếềểễệ]': 'ê',
-#     '[óòỏõọ]': 'o',
-#     '[ốồổỗộ]': 'ô',
-#     '[ớờởỡợ]': 'ơ',
-#     '[íìỉĩị]': 'i',
-#     '[úùủũụ]': 'u',
-#     '[ứừửữự]': 'ư',
-#     '[ýỳỷỹỵ]': 'y',
-# }
 
 def split_accent(word:str) -> tuple[bool, str, str]:
     """
@@ -66,8 +50,9 @@ def split_consonant_vowel(word:str) -> tuple[bool, str, str]:
         return True, consonant, vowel
     return False, "", ""
 
-def Vietnamese_checker(word:str) -> bool:
-    ok, non_accent_word, accent = split_accent(word)
+def Vietnamese_check(word:str) -> bool:
+    lower_word = word.lower()
+    ok, non_accent_word, accent = split_accent(lower_word)
     if not ok:
         return False
     ok, consonant, vowel = split_consonant_vowel(non_accent_word)
@@ -82,23 +67,16 @@ def Vietnamese_checker(word:str) -> bool:
             if vowel.endswith(end_vowel):
                 return False
     return True
-    
+
+print(Vietnamese_check(input()))
 
 
-# for accent in [chr(774), chr(770), chr(795), chr(769), chr(768), chr(777), chr(771), chr(803)]:
-#     print("a"+accent, "o"+accent)
 
-# import unicodedata
 
-# text = "â"
-# normalized_text = unicodedata.normalize("NFD", text)
-# normalized_text2 = unicodedata.normalize("NFC", normalized_text)
 
-# # Tách chuỗi thành các thành phần riêng lẻ
-# components = [c for c in normalized_text]
 
-# print(components)  # In ra kết quả
-# print(len(normalized_text2))  # In ra kết quả
+
+
 
 
 
