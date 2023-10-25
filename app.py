@@ -3,8 +3,11 @@ from main import Vietnamese_check
 
 app = Flask(__name__)
 
+@app.route("/")
+def index():
+    return "Welcome to Vietnamese checker"
 
-@app.route('/', methods=['POST'])
+@app.route('/check', methods=['POST'])
 def vietnamese_check():
     try:
         data = request.get_json()

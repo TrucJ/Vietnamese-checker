@@ -71,3 +71,6 @@ def Vietnamese_check(word:str) -> bool:
             if vowel.endswith(end_vowel):
                 return False
     return True
+
+if __name__ == '__main__':
+    print(Vietnamese_check(input()))
