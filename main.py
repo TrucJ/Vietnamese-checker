@@ -14,6 +14,8 @@ unlink_SC_consonant_list = ['c', 'g', 'ng']
 # Tất cả các thanh dấu
 all_accent = [chr(769), chr(768), chr(777), chr(771), chr(803)]
 SA_accent = [chr(769), chr(803)]
+# Các case hợp lệ đặc biệt
+special_verify_non_accent_list = ["gi"]
 
 def split_accent(word:str) -> tuple[bool, str, str]:
     """
@@ -55,6 +57,8 @@ def Vietnamese_check(word:str) -> bool:
     ok, non_accent_word, accent = split_accent(lower_word)
     if not ok:
         return False
+    if non_accent_word in special_verify_non_accent_list:
+        return True
     ok, consonant, vowel = split_consonant_vowel(non_accent_word)
     if not ok:
         return False
