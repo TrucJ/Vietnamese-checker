@@ -12,6 +12,15 @@ def index():
         --data '{"text": "Việt"}'
     """
 
+@app.route('/<word>')
+def vietnamese_word_check(word):
+    try:
+        is_vietnamese = Vietnamese_check(word)
+        response = {'result': is_vietnamese}
+        return jsonify(response)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/', methods=['POST'])
 def vietnamese_check():
     try:
