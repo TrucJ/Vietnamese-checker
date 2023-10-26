@@ -1,5 +1,8 @@
 # Vietnamese-checker
 
+## Knowledge about Vietnamese
+[Vietnamese document](Vietnamese_rule.vn.md)
+
 ## Vietnamese-checker API
 
 POST: https://vietnamese-checker.vercel.app/
