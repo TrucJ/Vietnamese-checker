@@ -5,6 +5,8 @@
 
 ## Vietnamese-checker API
 
+### POST
+
 POST: https://vietnamese-checker.vercel.app/
 
 Input format:
@@ -21,9 +23,25 @@ Output format:
 }
 ```
 
-Example:
+### GET
+
+GET: https://vietnamese-checker.vercel.app/word
+
+Replay 'word' to any word you want to check
+
+Output format:
+```json
+{
+    "result": true // or false
+}
+```
+
+### Example:
 ```bash
 curl -X POST https://vietnamese-checker.vercel.app/ --header 'Content-Type: application/json' --data '{"text": "Việt"}'
+```
+```bash
+curl https://vietnamese-checker.vercel.app/Việt
 ```
 
 ## For developer
