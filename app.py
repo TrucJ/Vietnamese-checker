@@ -5,17 +5,21 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "Welcome to Vietnamese checker"
+    return """
+        Welcome to Vietnamese checker. Use cmd: 
+        curl -X POST https://vietnamese-checker.vercel.app/ \
+        --header 'Content-Type: application/json' \
+        --data '{"text": "Việt"}'
+    """
 
-@app.route('/check', methods=['POST'])
+@app.route('/', methods=['POST'])
 def vietnamese_check():
     try:
         data = request.get_json()
-        print("req: ", data)
         if 'text' in data:
             text = data['text']
             is_vietnamese = Vietnamese_check(text)
-            response = {'is_vietnamese': is_vietnamese}
+            response = {'result': is_vietnamese}
             return jsonify(response)
         else:
             return jsonify({'error': 'Missing "text" in the request data'}), 400
