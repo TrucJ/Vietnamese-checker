@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>API Test</title>
-    <!-- Thêm liên kết CSS của Bootstrap -->
+    <title>Vietnamese Checker</title>
+    <!-- Add Bootstrap CSS link -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* CSS để ẩn các biểu tượng ban đầu */
+        /* CSS to hide initial icons */
         #checkmark, #crossmark {
             display: none;
-            font-size: 24px; /* Thay đổi kích thước tùy ý */
-            color: green; /* Màu cho biểu tượng ✅ */
+            font-size: 24px; /* Adjust size as needed */
+            color: green; /* Color for ✅ icon */
         }
 
         #crossmark {
-            color: red; /* Màu cho biểu tượng ❌ */
+            color: red; /* Color for ❌ icon */
         }
     </style>
 </head>
 <body>
     <div class="container text-center mt-5">
-        <h1 class="mb-4">Kiểm tra API</h1>
+        <h1 class="mb-4">Vietnamese Checker</h1>
         <div class="input-group mb-3">
-            <input type="text" id="inputText" class="form-control w-25" placeholder="Nhập văn bản" onkeypress="handleKeyPress(event)" oninput="clearIcons()">
+            <input type="text" id="inputText" class="form-control w-25" placeholder="Enter word" onkeypress="handleKeyPress(event)" oninput="clearIcons()">
             <div class="input-group-append">
                 <button id="submitButton" class="btn btn-primary" onclick="checkAPI()">Submit</button>
             </div>
@@ -31,14 +31,14 @@
     </div>
     
     <script>
-        var apiUrl = '/';
+        var apiUrl = 'http://127.0.0.1:5000/';
 
         function clearIcons() {
             var checkmark = document.getElementById('checkmark');
             var crossmark = document.getElementById('crossmark');
 
-            checkmark.style.display = 'none';  // Ẩn biểu tượng ✅
-            crossmark.style.display = 'none';  // Ẩn biểu tượng ❌
+            checkmark.style.display = 'none';  // Hide ✅ icon
+            crossmark.style.display = 'none';  // Hide ❌ icon
         }
 
         function checkAPI() {
@@ -46,7 +46,7 @@
             var checkmark = document.getElementById('checkmark');
             var crossmark = document.getElementById('crossmark');
 
-            // Gọi API
+            // Call the API
             fetch(apiUrl, {
                 method: 'POST',
                 body: JSON.stringify({ text: inputText }),
@@ -56,17 +56,17 @@
             })
             .then(response => response.json())
             .then(data => {
-                // Kiểm tra kết quả API
+                // Check API result
                 if (data.result) {
-                    checkmark.style.display = 'inline'; // Hiện biểu tượng ✅
-                    crossmark.style.display = 'none';  // Ẩn biểu tượng ❌
+                    checkmark.style.display = 'inline'; // Show ✅ icon
+                    crossmark.style.display = 'none';  // Hide ❌ icon
                 } else {
-                    checkmark.style.display = 'none';  // Ẩn biểu tượng ✅
-                    crossmark.style.display = 'inline'; // Hiện biểu tượng ❌
+                    checkmark.style.display = 'none';  // Hide ✅ icon
+                    crossmark.style.display = 'inline'; // Show ❌ icon
                 }
             })
             .catch(error => {
-                console.error('Lỗi khi gọi API:', error);
+                console.error('Error calling the API:', error);
             });
         }
 
