@@ -19,10 +19,10 @@ special_verify_non_accent_list = ["gi"]
 
 def split_accent(word:str) -> tuple[bool, str, str]:
     """
-    Split accents in Vietnamese while keeping special Vietnamese characters
-    text: input string to be splited
-    Return: splited string
-    Ex: "Trực" -> "Trưc", chr(803)
+        Split accents in Vietnamese while keeping special Vietnamese characters
+        text: input string to be splited
+        Return: status (bool), splited string and accent char
+        Ex: "trực" -> True, "trưc", chr(803)
     """
     word = unicodedata.normalize("NFD", word)
     accent = ""
@@ -38,6 +38,12 @@ def split_accent(word:str) -> tuple[bool, str, str]:
     return True, word, accent
 
 def split_consonant_vowel(word:str) -> tuple[bool, str, str]:
+    """
+        Split consonant and vowel in Vietnamese
+        text: input string to be splited
+        Return: status (bool), consonant, vowel
+        Ex: "trung" -> True, "tr", "ung"
+    """
     def get_consonant(word):
         if word[:3] in triple_consonant_list:
             return word[:3]
@@ -53,6 +59,12 @@ def split_consonant_vowel(word:str) -> tuple[bool, str, str]:
     return False, "", ""
 
 def Vietnamese_check(word:str) -> bool:
+    """
+        Check if a word is Vietnamese or not
+        text: word (string)
+        Return: (bool) The input word is Vietnamese or not 
+        Ex: "TrucJ" -> False
+    """
     lower_word = word.lower()
     ok, non_accent_word, accent = split_accent(lower_word)
     if not ok:
