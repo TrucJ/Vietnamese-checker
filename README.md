@@ -45,13 +45,19 @@ curl https://vietnamese-checker.vercel.app/Việt
 ```
 
 ## For developer
-To run demo api you need install enviroment first
-```
+First, install enviroment
+```bash
 pip install -r requirements.txt
 ```
-Then run
-```
+
+To run demo api, use
+```bash
 python app.py
+```
+
+For run and listen all updation, use
+```bash
+flask --app app.py --debug run
 ```
 
 ___Welcome all pull request ^^___
