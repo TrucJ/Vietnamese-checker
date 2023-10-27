@@ -1,25 +1,11 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request, jsonify
 from main import Vietnamese_check
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return """
-        Welcome to Vietnamese checker. Use cmd: 
-        curl -X POST https://vietnamese-checker.vercel.app/ \
-        --header 'Content-Type: application/json' \
-        --data '{"text": "Việt"}'
-    """
-
-@app.route('/<word>')
-def vietnamese_word_check(word):
-    try:
-        is_vietnamese = Vietnamese_check(word)
-        response = {'result': is_vietnamese}
-        return jsonify(response)
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+    return render_template('index.html')
 
 @app.route('/', methods=['POST'])
 def vietnamese_check():
