@@ -12,14 +12,14 @@ POST: https://vietnamese-checker.vercel.app/
 Input format:
 ```json
 {
-    "text": "Việt" // or any word you want to check
+    "text": "Việt"
 }
 ```
 
 Output format:
 ```json
 {
-    "result": true // or false
+    "result": true
 }
 ```
 
@@ -61,3 +61,4 @@ flask --app app.py --debug run
 ```
 
 ___Welcome all pull request ^^___
+
