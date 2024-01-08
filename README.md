@@ -32,7 +32,7 @@ Replay 'word' to any word you want to check
 Output format:
 ```json
 {
-    "result": true // or false
+    "result": true
 }
 ```
 
